@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mongodb_container:
+    image: mongo:latest
+    container_name: swag-mongo
+    restart: on-failure
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - ./data/mongo:/data/db
+    networks:
+      - private
+
+volumes:
+  mongodata:
+    driver: local
+
+networks:
+  private:
+    driver: bridge
